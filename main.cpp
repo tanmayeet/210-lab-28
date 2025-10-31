@@ -132,3 +132,10 @@ int select_goat(list<Goat> trp) {
   }
   return input;
 }
+
+void sort_goats_age(list<Goat>& trip) {
+  cout << "Sort the goats by age:\n";
+  trip.sort(
+      [](const Goat& a, const Goat& b) { return a.get_age() < b.get_age(); });
+  cout << "Sorted by age";
+}
