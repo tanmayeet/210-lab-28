@@ -17,6 +17,7 @@ void add_goat(list<Goat>& trip, string[], string[]);
 void display_trip(list<Goat> trip);
 void sort_goats_age(list<Goat>& trip);
 void remove_under_seven(list<Goat>& trip);
+void find_goat(list<Goat> trip);
 int main_menu();
 
 int main() {
@@ -71,6 +72,10 @@ int main() {
       case 5:
         cout << "Removing goats under 7\n";
         remove_under_seven(trip);
+        break;
+      case 6:
+        cout << "Finding Zorg\n";
+        find_goat(trip);
         break;
       default:
         cout << "Invalid selection.\n";
@@ -156,4 +161,8 @@ void remove_under_seven(list<Goat>& trip) {
   cout << "After removing goats under 7:\n";
 }
 
-// next func
+void find_goat(list<Goat> trip) {
+  cout << "Searching for Zorg...\n";
+  auto it = find_if(trip.begin(), trip.end(),
+                    [](const Goat& g) { return g.get_name() == "Zorg"; });
+}
