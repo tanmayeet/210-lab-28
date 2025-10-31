@@ -155,3 +155,5 @@ void remove_under_seven(list<Goat>& trip) {
              trip.end());
   cout << "After removing goats under 7:\n";
 }
+
+// next func
