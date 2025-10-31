@@ -1,3 +1,6 @@
+// COMSC210 | Lab 28 | Tanmayee Chalamalasetti
+// IDE Used: VS Code
+
 #include <fstream>
 #include <iomanip>
 #include <iostream>
@@ -13,6 +16,7 @@ void delete_goat(list<Goat>& trip);
 void add_goat(list<Goat>& trip, string[], string[]);
 void display_trip(list<Goat> trip);
 void sort_goats_age(list<Goat>& trip);
+void remove_under_seven(list<Goat>& trip);
 int main_menu();
 
 int main() {
@@ -64,6 +68,10 @@ int main() {
         cout << "Sorting goat data by age in ascending order.\n";
         sort_goats_age(trip);
         break;
+      case 5:
+        cout << "Removing goats under 7\n";
+        remove_under_seven(trip);
+        break;
       default:
         cout << "Invalid selection.\n";
         break;
@@ -80,6 +88,7 @@ int main_menu() {
   cout << "[2] Delete a goat\n";
   cout << "[3] List goats\n";
   cout << "[4] Sort goats\n";
+  cout << "[5] Remove goats under 7\n";
   cout << "[5] Find a goat\n";
   cout << "[6] \n";
   cout << "[11] Quit\n";
@@ -138,4 +147,11 @@ void sort_goats_age(list<Goat>& trip) {
   trip.sort(
       [](const Goat& a, const Goat& b) { return a.get_age() < b.get_age(); });
   cout << "Sorted by age";
+}
+
+void remove_under_seven(list<Goat>& trip) {
+  trip.erase(remove_if(trip.begin(), trip.end(),
+                       [](const Goat& g) { return g.get_age() < 7; }),
+             trip.end());
+  cout << "After removing goats under 7:\n";
 }
