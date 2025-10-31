@@ -12,6 +12,7 @@ int select_goat(list<Goat> trip);
 void delete_goat(list<Goat>& trip);
 void add_goat(list<Goat>& trip, string[], string[]);
 void display_trip(list<Goat> trip);
+void sort_goats_age(list<Goat>& trip);
 int main_menu();
 
 int main() {
@@ -45,7 +46,7 @@ int main() {
 
   // Goat Manager 3001 Engine
   int sel = main_menu();
-  while (sel != 4) {
+  while (sel != 11) {
     switch (sel) {
       case 1:
         cout << "Adding a goat.\n";
@@ -58,6 +59,10 @@ int main() {
       case 3:
         cout << "Displaying goat data.\n";
         display_trip(trip);
+        break;
+      case 4:
+        cout << "Sorting goat data by age in ascending order.\n";
+        sort_goats_age(trip);
         break;
       default:
         cout << "Invalid selection.\n";
@@ -74,12 +79,14 @@ int main_menu() {
   cout << "[1] Add a goat\n";
   cout << "[2] Delete a goat\n";
   cout << "[3] List goats\n";
-  cout << "[4] ";
-  cout << "[4] Quit\n";
+  cout << "[4] Sort goats\n";
+  cout << "[5] Find a goat\n";
+  cout << "[6] \n";
+  cout << "[11] Quit\n";
   cout << "Choice --> ";
   int choice;
   cin >> choice;
-  while (choice < 1 || choice > 4) {
+  while (choice < 1 || choice > 11) {
     cout << "Invalid, again --> ";
     cin >> choice;
   }
