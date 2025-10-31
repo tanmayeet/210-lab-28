@@ -77,6 +77,10 @@ int main() {
         cout << "Finding Zorg\n";
         find_goat(trip);
         break;
+      case 7:
+        cout << "Deleting duplicates.\n";
+        remove_duplicate_ages(trip);
+        break;
       default:
         cout << "Invalid selection.\n";
         break;
@@ -94,8 +98,8 @@ int main_menu() {
   cout << "[3] List goats\n";
   cout << "[4] Sort goats\n";
   cout << "[5] Remove goats under 7\n";
-  cout << "[5] Find a goat\n";
-  cout << "[6] \n";
+  cout << "[6] Find a goat\n";
+  cout << "[7] Delete goats with duplicate ages\n";
   cout << "[11] Quit\n";
   cout << "Choice --> ";
   int choice;
@@ -165,4 +169,18 @@ void find_goat(list<Goat> trip) {
   cout << "Searching for Zorg...\n";
   auto it = find_if(trip.begin(), trip.end(),
                     [](const Goat& g) { return g.get_name() == "Zorg"; });
+
+  if (it != trip.end()) {
+    cout << it->get_name() << "that is " << it->get_age()
+         << " years old and is " << it->get_color() << endl;
+  }
+}  // will come back later
+
+void remove_duplicate_ages(list<Goat> trip) {
+  trip.erase(unique(trip.begin(), trip.end(),
+                    [](const Goat& g, const Goat& h) {
+                      return g.get_age() == h.get_age();
+                    }),
+             trip.end());
+  cout << "Removed goats with duplicate ages.\n";
 }
