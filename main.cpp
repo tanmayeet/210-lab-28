@@ -23,6 +23,7 @@ void remove_under_seven(list<Goat>& trip);
 void find_goat(list<Goat>& trip);
 void remove_duplicate_ages(list<Goat>& trip);
 void reverse_order(list<Goat>& trip);
+void randomly_shuffle_goats(list<Goat>& trip);
 int main_menu();
 
 int main() {
@@ -94,6 +95,9 @@ int main() {
         cout << "Reversing order.\n";
         reverse_order(trip);
         cout << "Goat order reversed.\n";
+        break;
+      case 9:
+        randomly_shuffle_goats(trip);
         break;
       default:
         cout << "Invalid selection.\n";
@@ -207,9 +211,10 @@ void remove_duplicate_ages(list<Goat>& trip) {
 void reverse_order(list<Goat>& trip) { reverse(trip.begin(), trip.end()); }
 
 // STL Algorithm #6
-void shuffle_goats(list<Goat>& trip) {
-  unsigned seed = 0;
-  vector<Goat> t(trip.begin(), trip.end());
-
-  shuffle(trip.begin(), trip.end(), default_random_engine(seed));
+void randomly_shuffle_goats(list<Goat>& trip) {
+  vector<Goat> tmp(trip.begin(), trip.end());
+  // shuffle needs a vector for random access iterator
+  random_device rd;
+  auto eng = default_random_engine{rd()};
+  shuffle(tmp.begin(), tmp.end(), eng);
 }
