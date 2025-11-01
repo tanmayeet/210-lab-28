@@ -217,4 +217,5 @@ void randomly_shuffle_goats(list<Goat>& trip) {
   random_device rd;
   auto eng = default_random_engine{rd()};
   shuffle(tmp.begin(), tmp.end(), eng);
+  trip.assign(tmp.begin(), tmp.end());
 }
