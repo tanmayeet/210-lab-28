@@ -18,6 +18,7 @@ void display_trip(list<Goat> trip);
 void sort_goats_age(list<Goat>& trip);
 void remove_under_seven(list<Goat>& trip);
 void find_goat(list<Goat> trip);
+void remove_duplicate_ages(list<Goat> trip);
 int main_menu();
 
 int main() {
