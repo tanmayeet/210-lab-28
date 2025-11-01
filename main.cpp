@@ -1,6 +1,7 @@
 // COMSC210 | Lab 28 | Tanmayee Chalamalasetti
 // IDE Used: VS Code
 
+#include <algorithm>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
@@ -112,11 +113,12 @@ int main_menu() {
   cout << "[6] Find a goat\n";
   cout << "[7] Delete goats with duplicate ages\n";
   cout << "[8] Reverse order of goats\n";
-  cout << "[11] Quit\n";
+  cout << "[9] Shuffle order of goats\n";
+  cout << "[12] Quit\n";
   cout << "Choice --> ";
   int choice;
   cin >> choice;
-  while (choice < 1 || choice > 11) {
+  while (choice < 1 || choice > 12) {
     cout << "Invalid, again --> ";
     cin >> choice;
   }
@@ -203,4 +205,7 @@ void remove_duplicate_ages(list<Goat>& trip) {
 void reverse_order(list<Goat>& trip) { reverse(trip.begin(), trip.end()); }
 
 // STL Algorithm #6
-void binary_search_goats(list<Goat>& trip) {}
+void shuffle_goats(list<Goat>& trip) {
+  unsigned seed = 0;
+  shuffle(trip.begin(), trip.end(), default_random_engine(seed));
+}
