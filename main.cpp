@@ -17,8 +17,8 @@ void add_goat(list<Goat>& trip, string[], string[]);
 void display_trip(list<Goat> trip);
 void sort_goats_age(list<Goat>& trip);
 void remove_under_seven(list<Goat>& trip);
-void find_goat(list<Goat> trip);
-void remove_duplicate_ages(list<Goat> trip);
+void find_goat(list<Goat>& trip);
+void remove_duplicate_ages(list<Goat>& trip);
 int main_menu();
 
 int main() {
@@ -156,7 +156,7 @@ void sort_goats_age(list<Goat>& trip) {
   cout << "Sort the goats by age:\n";
   trip.sort(
       [](const Goat& a, const Goat& b) { return a.get_age() < b.get_age(); });
-  cout << "Sorted by age";
+  cout << "Sorted by age\n";
 }
 
 void remove_under_seven(list<Goat>& trip) {
@@ -166,7 +166,7 @@ void remove_under_seven(list<Goat>& trip) {
   cout << "After removing goats under 7:\n";
 }
 
-void find_goat(list<Goat> trip) {
+void find_goat(list<Goat>& trip) {
   cout << "Searching for Zorg...\n";
   auto it = find_if(trip.begin(), trip.end(),
                     [](const Goat& g) { return g.get_name() == "Zorg"; });
@@ -177,11 +177,9 @@ void find_goat(list<Goat> trip) {
   }
 }  // will come back later
 
-void remove_duplicate_ages(list<Goat> trip) {
-  trip.erase(unique(trip.begin(), trip.end(),
-                    [](const Goat& g, const Goat& h) {
-                      return g.get_age() == h.get_age();
-                    }),
-             trip.end());
+void remove_duplicate_ages(list<Goat>& trip) {
+  sort_goats_age(trip);
+  trip.unique(
+      [](const Goat& a, const Goat& b) { return a.get_age() == b.get_age(); });
   cout << "Removed goats with duplicate ages.\n";
 }
