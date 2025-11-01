@@ -70,22 +70,27 @@ int main() {
       case 4:
         cout << "Sorting goat data by age in ascending order.\n";
         sort_goats_age(trip);
+        cout << "Sorted by age.\n";
         break;
       case 5:
         cout << "Removing goats under 7\n";
         remove_under_seven(trip);
+        cout << "Removed goats under 7.\n";
         break;
       case 6:
-        cout << "Finding Zorg\n";
+        cout << "Search a goat by name.\n";
+        cout << "Enter name --> ";
         find_goat(trip);
         break;
       case 7:
         cout << "Deleting duplicates.\n";
         remove_duplicate_ages(trip);
+        cout << "Removed goats with duplicate ages.\n";
         break;
       case 8:
         cout << "Reversing order.\n";
         reverse_order(trip);
+        cout << "Goat order reversed.\n";
         break;
       default:
         cout << "Invalid selection.\n";
@@ -160,10 +165,8 @@ int select_goat(list<Goat>& trp) {
 
 // STL Algorithm #1
 void sort_goats_age(list<Goat>& trip) {
-  cout << "Sort the goats by age...\n";
   trip.sort(
       [](const Goat& a, const Goat& b) { return a.get_age() < b.get_age(); });
-  cout << "Sorted by age.\n";
 }
 
 // STL Algorithm #2
@@ -171,20 +174,21 @@ void remove_under_seven(list<Goat>& trip) {
   trip.erase(remove_if(trip.begin(), trip.end(),
                        [](const Goat& g) { return g.get_age() < 7; }),
              trip.end());
-  cout << "Removed goats under 7.\n";
 }
 
 // STL Algorithm #3
 void find_goat(list<Goat>& trip) {
-  cout << "Searching for Zorg...\n";
-  auto it = find_if(trip.begin(), trip.end(),
-                    [](const Goat& g) { return g.get_name() == "Zorg"; });
+  string search;
+  getline(cin >> ws, search);
+  auto it = find_if(trip.begin(), trip.end(), [&search](const Goat& g) {
+    return g.get_name() == search;
+  });
 
   if (it != trip.end()) {
-    cout << it->get_name() << "that is " << it->get_age()
-         << " years old and is " << it->get_color() << endl;
+    cout << it->get_name() << " is " << it->get_age() << " years old and is "
+         << it->get_color() << ".\n";
   } else {
-    cout << "Zorg not found.\n";
+    cout << search << " not found.\n";
   }
 }  // will come back later
 
@@ -193,14 +197,10 @@ void remove_duplicate_ages(list<Goat>& trip) {
   sort_goats_age(trip);
   trip.unique(
       [](const Goat& a, const Goat& b) { return a.get_age() == b.get_age(); });
-  cout << "Removed goats with duplicate ages.\n";
 }
 
 // STL Algorithm #5
-void reverse_order(list<Goat>& trip) {
-  cout << "Reversing goat order...\n";
-  reverse(trip.begin(), trip.end());
-  cout << "Goat order reversed.\n";
-}
+void reverse_order(list<Goat>& trip) { reverse(trip.begin(), trip.end()); }
 
 // STL Algorithm #6
+void binary_search_goats(list<Goat>& trip) {}
