@@ -11,7 +11,7 @@ using namespace std;
 
 const int SZ_NAMES = 200, SZ_COLORS = 25;
 
-int select_goat(list<Goat> trip);
+int select_goat(list<Goat>& trip);
 void delete_goat(list<Goat>& trip);
 void add_goat(list<Goat>& trip, string[], string[]);
 void display_trip(list<Goat> trip);
@@ -145,7 +145,7 @@ void display_trip(list<Goat> trp) {
          << gt.get_color() << ")\n";
 }
 
-int select_goat(list<Goat> trp) {
+int select_goat(list<Goat>& trp) {
   int input;
   cout << "Make a selection:\n";
   display_trip(trp);
@@ -202,3 +202,5 @@ void reverse_order(list<Goat>& trip) {
   reverse(trip.begin(), trip.end());
   cout << "Goat order reversed.\n";
 }
+
+// STL Algorithm #6
