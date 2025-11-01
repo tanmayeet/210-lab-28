@@ -19,6 +19,7 @@ void sort_goats_age(list<Goat>& trip);
 void remove_under_seven(list<Goat>& trip);
 void find_goat(list<Goat>& trip);
 void remove_duplicate_ages(list<Goat>& trip);
+void reverse_order(list<Goat>& trip);
 int main_menu();
 
 int main() {
@@ -82,6 +83,10 @@ int main() {
         cout << "Deleting duplicates.\n";
         remove_duplicate_ages(trip);
         break;
+      case 8:
+        cout << "Reversing order.\n";
+        reverse_order(trip);
+        break;
       default:
         cout << "Invalid selection.\n";
         break;
@@ -101,6 +106,7 @@ int main_menu() {
   cout << "[5] Remove goats under 7\n";
   cout << "[6] Find a goat\n";
   cout << "[7] Delete goats with duplicate ages\n";
+  cout << "[8] Reverse order of goats\n";
   cout << "[11] Quit\n";
   cout << "Choice --> ";
   int choice;
@@ -152,20 +158,23 @@ int select_goat(list<Goat> trp) {
   return input;
 }
 
+// STL Algorithm #1
 void sort_goats_age(list<Goat>& trip) {
-  cout << "Sort the goats by age:\n";
+  cout << "Sort the goats by age...\n";
   trip.sort(
       [](const Goat& a, const Goat& b) { return a.get_age() < b.get_age(); });
-  cout << "Sorted by age\n";
+  cout << "Sorted by age.\n";
 }
 
+// STL Algorithm #2
 void remove_under_seven(list<Goat>& trip) {
   trip.erase(remove_if(trip.begin(), trip.end(),
                        [](const Goat& g) { return g.get_age() < 7; }),
              trip.end());
-  cout << "After removing goats under 7:\n";
+  cout << "Removed goats under 7.\n";
 }
 
+// STL Algorithm #3
 void find_goat(list<Goat>& trip) {
   cout << "Searching for Zorg...\n";
   auto it = find_if(trip.begin(), trip.end(),
@@ -174,12 +183,22 @@ void find_goat(list<Goat>& trip) {
   if (it != trip.end()) {
     cout << it->get_name() << "that is " << it->get_age()
          << " years old and is " << it->get_color() << endl;
+  } else {
+    cout << "Zorg not found.\n";
   }
 }  // will come back later
 
+// STL Algorithm #4
 void remove_duplicate_ages(list<Goat>& trip) {
   sort_goats_age(trip);
   trip.unique(
       [](const Goat& a, const Goat& b) { return a.get_age() == b.get_age(); });
   cout << "Removed goats with duplicate ages.\n";
+}
+
+// STL Algorithm #5
+void reverse_order(list<Goat>& trip) {
+  cout << "Reversing goat order...\n";
+  reverse(trip.begin(), trip.end());
+  cout << "Goat order reversed.\n";
 }
