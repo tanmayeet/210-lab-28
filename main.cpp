@@ -6,6 +6,8 @@
 #include <iomanip>
 #include <iostream>
 #include <list>
+#include <random>
+#include <vector>
 
 #include "Goat.h"
 using namespace std;
@@ -207,5 +209,7 @@ void reverse_order(list<Goat>& trip) { reverse(trip.begin(), trip.end()); }
 // STL Algorithm #6
 void shuffle_goats(list<Goat>& trip) {
   unsigned seed = 0;
+  vector<Goat> t(trip.begin(), trip.end());
+
   shuffle(trip.begin(), trip.end(), default_random_engine(seed));
 }
