@@ -24,6 +24,7 @@ void find_goat(list<Goat>& trip);
 void remove_duplicate_ages(list<Goat>& trip);
 void reverse_order(list<Goat>& trip);
 void randomly_shuffle_goats(list<Goat>& trip);
+void num_of_goats(list<Goat>& trip);
 int main_menu();
 
 int main() {
@@ -218,4 +219,13 @@ void randomly_shuffle_goats(list<Goat>& trip) {
   auto eng = default_random_engine{rd()};
   shuffle(tmp.begin(), tmp.end(), eng);
   trip.assign(tmp.begin(), tmp.end());
+}
+
+// STL Algorithm #7
+void average_age_of_goats(list<Goat>& trip) {
+  int total =
+      accumulate(trip.begin(), trip.end(), 0,
+                 [](int acc, const Goat& g) { return acc + g.get_age(); });
+  double avg = total / trip.size();
+  cout << "Average age of goats is " << avg << ".\n";
 }
