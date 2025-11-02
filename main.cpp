@@ -101,12 +101,15 @@ int main() {
         break;
       case 9:
         randomly_shuffle_goats(trip);
+        cout << "Goats have been randomly shuffled.\n";
         break;
       case 10:
+        cout << "Getting average age...\n";
         average_age_of_goats(trip);
         break;
       case 11:
         year_passed(trip);
+        cout << "A year has passed...\n";
         break;
       default:
         cout << "Invalid selection.\n";
