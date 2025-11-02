@@ -26,6 +26,7 @@ void reverse_order(list<Goat>& trip);
 void randomly_shuffle_goats(list<Goat>& trip);
 void num_of_goats(list<Goat>& trip);
 void average_age_of_goats(list<Goat>& trip);
+void year_passed(list<Goat>& trip);
 int main_menu();
 
 int main() {
