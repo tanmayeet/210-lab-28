@@ -60,7 +60,7 @@ int main() {
 
   // Goat Manager 3001 Engine
   int sel = main_menu();
-  while (sel != 11) {
+  while (sel != 12) {
     switch (sel) {
       case 1:
         cout << "Adding a goat.\n";
@@ -106,7 +106,7 @@ int main() {
         average_age_of_goats(trip);
         break;
       case 11:
-
+        year_passed(trip);
         break;
       default:
         cout << "Invalid selection.\n";
@@ -130,7 +130,7 @@ int main_menu() {
   cout << "[8] Reverse order of goats\n";
   cout << "[9] Shuffle order of goats\n";
   cout << "[10] Average age of goats\n";
-  cout << "[11] \n";
+  cout << "[11] After a year has passed\n";
   cout << "[12] Quit\n";
   cout << "Choice --> ";
   int choice;
@@ -242,5 +242,6 @@ void average_age_of_goats(list<Goat>& trip) {
 
 // STL Algorithm #8
 void year_passed(list<Goat>& trip) {
-  for_each(trip.begin(), trip.end(), [](const Goat& g) { g.get_age() + 1; });
+  for_each(trip.begin(), trip.end(),
+           [](Goat& g) { g.set_age(g.get_age() + 1); });
 }
