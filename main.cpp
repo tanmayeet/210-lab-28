@@ -25,6 +25,7 @@ void remove_duplicate_ages(list<Goat>& trip);
 void reverse_order(list<Goat>& trip);
 void randomly_shuffle_goats(list<Goat>& trip);
 void num_of_goats(list<Goat>& trip);
+void average_age_of_goats(list<Goat>& trip);
 int main_menu();
 
 int main() {
@@ -100,6 +101,9 @@ int main() {
       case 9:
         randomly_shuffle_goats(trip);
         break;
+      case 10:
+        average_age_of_goats(trip);
+        break;
       default:
         cout << "Invalid selection.\n";
         break;
@@ -121,6 +125,7 @@ int main_menu() {
   cout << "[7] Delete goats with duplicate ages\n";
   cout << "[8] Reverse order of goats\n";
   cout << "[9] Shuffle order of goats\n";
+  cout << "[10] Average age of goats\n";
   cout << "[12] Quit\n";
   cout << "Choice --> ";
   int choice;
@@ -225,7 +230,7 @@ void randomly_shuffle_goats(list<Goat>& trip) {
 void average_age_of_goats(list<Goat>& trip) {
   int total =
       accumulate(trip.begin(), trip.end(), 0,
-                 [](int acc, const Goat& g) { return acc + g.get_age(); });
-  double avg = total / trip.size();
-  cout << "Average age of goats is " << avg << ".\n";
+                 [](double acc, const Goat& g) { return acc + g.get_age(); });
+  double avg = (double)total / trip.size();
+  cout << "Average age of goats is " << avg << " years old.\n";
 }
