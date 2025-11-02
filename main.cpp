@@ -240,4 +240,6 @@ void average_age_of_goats(list<Goat>& trip) {
 }
 
 // STL Algorithm #8
-//
+void year_passed(list<Goat>& trip) {
+  for_each(trip.begin(), trip.end(), [](const Goat& g) { g.get_age() + 1; });
+}
