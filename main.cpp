@@ -104,6 +104,9 @@ int main() {
       case 10:
         average_age_of_goats(trip);
         break;
+      case 11:
+
+        break;
       default:
         cout << "Invalid selection.\n";
         break;
@@ -126,6 +129,7 @@ int main_menu() {
   cout << "[8] Reverse order of goats\n";
   cout << "[9] Shuffle order of goats\n";
   cout << "[10] Average age of goats\n";
+  cout << "[11] \n";
   cout << "[12] Quit\n";
   cout << "Choice --> ";
   int choice;
@@ -204,7 +208,7 @@ void find_goat(list<Goat>& trip) {
   } else {
     cout << search << " not found.\n";
   }
-}  // will come back later
+}
 
 // STL Algorithm #4
 void remove_duplicate_ages(list<Goat>& trip) {
@@ -234,3 +238,5 @@ void average_age_of_goats(list<Goat>& trip) {
   double avg = (double)total / trip.size();
   cout << "Average age of goats is " << avg << " years old.\n";
 }
+
+// STL Algorithm #8
