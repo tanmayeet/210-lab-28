@@ -14,6 +14,7 @@ using namespace std;
 
 const int SZ_NAMES = 200, SZ_COLORS = 25;
 
+// Function prototypes
 int select_goat(list<Goat>& trip);
 void delete_goat(list<Goat>& trip);
 void add_goat(list<Goat>& trip, string[], string[]);
@@ -144,7 +145,9 @@ int main_menu() {
   }
   return choice;
 }
-
+// delete_goat adds a deletes to the list based on a randomly chosen name, age,
+// and color arguments: list<Goat>& trip, string names[], string colors[]
+// returns: nothing
 void delete_goat(list<Goat>& trip) {
   cout << "DELETE A GOAT\n";
   int index = select_goat(trip);
@@ -154,6 +157,9 @@ void delete_goat(list<Goat>& trip) {
   cout << "Goat deleted. New trip size: " << trip.size() << endl;
 }
 
+// add_goat adds a goat to the list based on a randomly chosen name, age, and
+// color arguments: list<Goat>& trip, string names[], string colors[] returns:
+// nothing
 void add_goat(list<Goat>& trip, string nms[], string cls[]) {
   cout << "ADD A GOAT\n";
   int age = rand() % MAX_AGE;
@@ -164,6 +170,9 @@ void add_goat(list<Goat>& trip, string nms[], string cls[]) {
   cout << "Goat added. New trip size: " << trip.size() << endl;
 }
 
+// delete_goat deletes a goat from the list based on user input
+// arguments: list<Goat>& trip
+// returns: nothing
 void display_trip(list<Goat> trp) {
   int i = 1;
   for (auto gt : trp)
@@ -172,6 +181,9 @@ void display_trip(list<Goat> trp) {
          << gt.get_color() << ")\n";
 }
 
+// select_goat allows a user to select a goat based on their input
+// arguments: list<Goat>& trip
+// returns: user selected int
 int select_goat(list<Goat>& trp) {
   int input;
   cout << "Make a selection:\n";
@@ -186,17 +198,26 @@ int select_goat(list<Goat>& trp) {
 }
 
 // STL Algorithm #1
+// sort_goats sorts the list by the goats age in ascending order
+// arguments: list<Goat>& trip
+// returns: nothing
 void sort_goats_age(list<Goat>& trip) {
   trip.sort(
       [](const Goat& a, const Goat& b) { return a.get_age() < b.get_age(); });
 }
 
 // STL Algorithm #2
+// remove_under_seven removes goats under the age of 7
+// arguments: list<Goat>& trip
+// returns: nothing
 void remove_under_seven(list<Goat>& trip) {
   trip.remove_if([](const Goat& g) { return g.get_age() < 7; });
 }
 
 // STL Algorithm #3
+// find_goat allows the user to search for a goat in the list
+// arguments: list<Goat>& trip
+// returns: nothing
 void find_goat(list<Goat>& trip) {
   string search;
   getline(cin >> ws, search);
@@ -213,6 +234,9 @@ void find_goat(list<Goat>& trip) {
 }
 
 // STL Algorithm #4
+// remove_duplicate_ages removes goats that are the same age
+// arguments: list<Goat>& trip
+// returns: nothing
 void remove_duplicate_ages(list<Goat>& trip) {
   sort_goats_age(trip);
   trip.unique(
@@ -220,9 +244,14 @@ void remove_duplicate_ages(list<Goat>& trip) {
 }
 
 // STL Algorithm #5
+// reverse_order() verses the order of the goats, so shows them in descending
+// order by age arguments: list<Goat>& trip returns: nothing
 void reverse_order(list<Goat>& trip) { trip.reverse(); }
 
 // STL Algorithm #6
+// randomly_shuffles randomly shuffles the order of goats
+// arguments: list<Goat>& trip
+// returns: nothing
 void randomly_shuffle_goats(list<Goat>& trip) {
   vector<Goat> tmp(trip.begin(), trip.end());
   // shuffle needs a vector for random access iterator
@@ -233,6 +262,9 @@ void randomly_shuffle_goats(list<Goat>& trip) {
 }
 
 // STL Algorithm #7
+// average_age_of_goats finds the average age of all the goats in a list
+// arguments: list<Goat>& trip
+// returns: nothing
 void average_age_of_goats(list<Goat>& trip) {
   if (trip.empty()) {
     cout << "No goats to average.\n";
@@ -246,6 +278,9 @@ void average_age_of_goats(list<Goat>& trip) {
 }
 
 // STL Algorithm #8
+// year_passed adds 1 to all of the goats' ages
+// arguments: list<Goat>& trip
+// returns: nothing
 void year_passed(list<Goat>& trip) {
   for_each(trip.begin(), trip.end(),
            [](Goat& g) { g.set_age(g.get_age() + 1); });
