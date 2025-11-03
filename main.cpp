@@ -193,9 +193,7 @@ void sort_goats_age(list<Goat>& trip) {
 
 // STL Algorithm #2
 void remove_under_seven(list<Goat>& trip) {
-  trip.erase(remove_if(trip.begin(), trip.end(),
-                       [](const Goat& g) { return g.get_age() < 7; }),
-             trip.end());
+  trip.remove_if([](const Goat& g) { return g.get_age() < 7; });
 }
 
 // STL Algorithm #3
@@ -222,7 +220,7 @@ void remove_duplicate_ages(list<Goat>& trip) {
 }
 
 // STL Algorithm #5
-void reverse_order(list<Goat>& trip) { reverse(trip.begin(), trip.end()); }
+void reverse_order(list<Goat>& trip) { trip.reverse(); }
 
 // STL Algorithm #6
 void randomly_shuffle_goats(list<Goat>& trip) {
@@ -236,10 +234,14 @@ void randomly_shuffle_goats(list<Goat>& trip) {
 
 // STL Algorithm #7
 void average_age_of_goats(list<Goat>& trip) {
+  if (trip.empty()) {
+    cout << "No goats to average.\n";
+    return;
+  }
   int total =
       accumulate(trip.begin(), trip.end(), 0,
-                 [](double acc, const Goat& g) { return acc + g.get_age(); });
-  double avg = (double)total / trip.size();
+                 [](int acc, const Goat& g) { return acc + g.get_age(); });
+  double avg = static_cast<double>(total) / trip.size();
   cout << "Average age of goats is " << avg << " years old.\n";
 }
 
